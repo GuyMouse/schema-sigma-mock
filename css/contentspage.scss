@@ -1,0 +1,127 @@
+.contents-page {
+    navbar {
+        display: block;
+        width: 100%;
+        background-color: #2e3743;
+        .navbar--wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            .navbar-links {
+                display: flex;
+                align-items: center;
+                gap: 5rem;
+                ul {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    li a {
+                        text-decoration: none;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+    .sidebar,
+    .main-content {
+        display: inline-block;
+    }
+    .sidebar {
+        width: 29%;
+        max-width: 30rem;
+        height: 100%;
+        background-color: #f2f2f2;
+        &--wrapper {
+            ul {
+                padding: 0;
+                margin: 0;
+            }
+            & > ul {
+                padding: 0 0 0 1rem;
+            }
+        }
+        ul li.has-submenu > ul {
+            display: none;
+        }
+        ul {
+            li:not(:last-child) {
+                margin-bottom: 1rem;
+            }
+            li {
+                position: relative;
+                list-style: none;
+                & > ul {
+                    margin-top: 1rem;
+                    padding-inline-start: 2rem;
+                }
+                &.active > a {
+                    background-color: #355276;
+                    color: #fff;
+                }
+                &.has-submenu {
+                    &::before,
+                    &::after {
+                        content: url("/assets/chevron.svg");
+                        position: absolute;
+                        top: 0;
+                        left: 0.5rem;
+                        color: #fff;
+                        transform: translate(0, 50%);
+                        display: inline-block;
+                        opacity: 1;
+                        transition:
+                            opacity 0.2s linear,
+                            transform 0.2s linear;
+                    }
+                    &::after {
+                        opacity: 0;
+                        content: url("/assets/white-chevron.svg");
+                    }
+                    &.open::before,
+                    &.open::after,
+                    &.active::before,
+                    &.active::after {
+                        transform: translate(0, 50%) rotate(90deg);
+                        opacity: 0;
+                    }
+                    &.active::after {
+                        opacity: 1;
+                    }
+                    &.open::before {
+                        transform: translate(0, 50%) rotate(90deg);
+                        opacity: 1;
+                    }
+                }
+                a {
+                    display: block;
+                    font-size: 1.4rem;
+                    text-decoration: none;
+                    color: #000;
+                    width: 100%;
+                    height: 100%;
+                    padding: 1rem 2rem 1rem 3rem;
+                    transition:
+                        color 0.2s linear,
+                        background-color 0.2s linear;
+                }
+            }
+        }
+    }
+    .main-content {
+        width: 70%;
+        height: 100%;
+        vertical-align: top;
+        background-color: #fff;
+        .content {
+            display: none;
+            &.active {
+                display: block;
+            }
+        }
+    }
+}

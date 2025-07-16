@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigma</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<body class="contents-page">
+    <main>
+        <navbar>
+            <div class="navbar--wrapper">
+                <div class="navbar-links">
+                    <ul>
+                        <li>
+                            <a href="/index.html" class="home">
+                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <mask id="mask0_2028_1137" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+                                        y="0" width="24" height="25">
+                                        <rect y="0.454346" width="24" height="24" fill="#1D334F" />
+                                    </mask>
+                                    <g mask="url(#mask0_2028_1137)">
+                                        <path
+                                            d="M4 21.4543V9.45435L12 3.45435L20 9.45435V21.4543H14V14.4543H10V21.4543H4Z"
+                                            fill="white" />
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="profile">
+                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <mask id="mask0_2028_1141" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+                                        y="0" width="24" height="25">
+                                        <rect y="0.454346" width="24" height="24" fill="#D9D9D9" />
+                                    </mask>
+                                    <g mask="url(#mask0_2028_1141)">
+                                        <path
+                                            d="M5.85 17.5543C6.7 16.9043 7.65 16.3918 8.7 16.0168C9.75 15.6418 10.85 15.4543 12 15.4543C13.15 15.4543 14.25 15.6418 15.3 16.0168C16.35 16.3918 17.3 16.9043 18.15 17.5543C18.7333 16.871 19.1875 16.096 19.5125 15.2293C19.8375 14.3627 20 13.4377 20 12.4543C20 10.2377 19.2208 8.35018 17.6625 6.79185C16.1042 5.23351 14.2167 4.45435 12 4.45435C9.78333 4.45435 7.89583 5.23351 6.3375 6.79185C4.77917 8.35018 4 10.2377 4 12.4543C4 13.4377 4.1625 14.3627 4.4875 15.2293C4.8125 16.096 5.26667 16.871 5.85 17.5543ZM12 13.4543C11.0167 13.4543 10.1875 13.1168 9.5125 12.4418C8.8375 11.7668 8.5 10.9377 8.5 9.95435C8.5 8.97101 8.8375 8.14185 9.5125 7.46685C10.1875 6.79185 11.0167 6.45435 12 6.45435C12.9833 6.45435 13.8125 6.79185 14.4875 7.46685C15.1625 8.14185 15.5 8.97101 15.5 9.95435C15.5 10.9377 15.1625 11.7668 14.4875 12.4418C13.8125 13.1168 12.9833 13.4543 12 13.4543ZM12 22.4543C10.6167 22.4543 9.31667 22.1918 8.1 21.6668C6.88333 21.1418 5.825 20.4293 4.925 19.5293C4.025 18.6293 3.3125 17.571 2.7875 16.3543C2.2625 15.1377 2 13.8377 2 12.4543C2 11.071 2.2625 9.77101 2.7875 8.55435C3.3125 7.33768 4.025 6.27935 4.925 5.37935C5.825 4.47935 6.88333 3.76685 8.1 3.24185C9.31667 2.71685 10.6167 2.45435 12 2.45435C13.3833 2.45435 14.6833 2.71685 15.9 3.24185C17.1167 3.76685 18.175 4.47935 19.075 5.37935C19.975 6.27935 20.6875 7.33768 21.2125 8.55435C21.7375 9.77101 22 11.071 22 12.4543C22 13.8377 21.7375 15.1377 21.2125 16.3543C20.6875 17.571 19.975 18.6293 19.075 19.5293C18.175 20.4293 17.1167 21.1418 15.9 21.6668C14.6833 22.1918 13.3833 22.4543 12 22.4543Z"
+                                            fill="white" />
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="close">
+                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <mask id="mask0_2028_1145" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+                                        y="0" width="24" height="25">
+                                        <rect y="0.454346" width="24" height="24" fill="#D9D9D9" />
+                                    </mask>
+                                    <g mask="url(#mask0_2028_1145)">
+                                        <path
+                                            d="M9.575 12.4543L5 7.85435L6.4 6.45435L12.4 12.4543L6.4 18.4543L5 17.0543L9.575 12.4543ZM16.175 12.4543L11.6 7.85435L13 6.45435L19 12.4543L13 18.4543L11.6 17.0543L16.175 12.4543Z"
+                                            fill="white" />
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="navbar--logo">
+                        <img src="/assets/logo-white.png" alt="Sigma Logo">
+                    </div>
+                </div>
+                <div class="search">
+                    <div class="search--wrapper">
+                        <input type="text" placeholder="Search">
+                        <button class="search-button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <mask id="mask0_2028_1131" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+                                    y="0" width="24" height="24">
+                                    <rect width="24" height="24" fill="#3A679F" />
+                                </mask>
+                                <g mask="url(#mask0_2028_1131)">
+                                    <path
+                                        d="M19.6 21L13.3 14.7C12.8 15.1 12.225 15.4167 11.575 15.65C10.925 15.8833 10.2333 16 9.5 16C7.68333 16 6.14583 15.3708 4.8875 14.1125C3.62917 12.8542 3 11.3167 3 9.5C3 7.68333 3.62917 6.14583 4.8875 4.8875C6.14583 3.62917 7.68333 3 9.5 3C11.3167 3 12.8542 3.62917 14.1125 4.8875C15.3708 6.14583 16 7.68333 16 9.5C16 10.2333 15.8833 10.925 15.65 11.575C15.4167 12.225 15.1 12.8 14.7 13.3L21 19.6L19.6 21ZM9.5 14C10.75 14 11.8125 13.5625 12.6875 12.6875C13.5625 11.8125 14 10.75 14 9.5C14 8.25 13.5625 7.1875 12.6875 6.3125C11.8125 5.4375 10.75 5 9.5 5C8.25 5 7.1875 5.4375 6.3125 6.3125C5.4375 7.1875 5 8.25 5 9.5C5 10.75 5.4375 11.8125 6.3125 12.6875C7.1875 13.5625 8.25 14 9.5 14Z"
+                                        fill="#3A679F" />
+                                </g>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </navbar>
+        <div class="sidebar">
+            <div class="sidebar--wrapper">
+                <ul>
+                    <li><a href="#" data-content="glossary" class="active">Glossary</a></li>
+                    <li><a href="#" data-content="safety-instructions">Safety Instructions</a></li>
+                    <li class="has-submenu">
+                        <a href="#" data-content="sigma-system">SIGMA System</a>
+                        <ul>
+                            <li><a href="#" data-content="sigma-introduction">Introduction</a></li>
+                            <li><a href="#" data-content="sigma-safety">Safety</a></li>
+                            <li><a href="#" data-content="sigma-deployment-fire-mission">Deployment & Fire Mission</a>
+                            </li>
+                            <li><a href="#" data-content="sigma-cab-system-fire-functions">Cab System And Fire
+                                    Functions</a></li>
+                            <li><a href="#" data-content="sigma-operational-control-systems">Operational & Control
+                                    Systems</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-content="crew-members">Crew Members</a></li>
+                    <li><a href="#" data-content="sigma-operational-procedures">SIGMA Operational Procedures</a></li>
+                    <li><a href="#" data-content="sigma-operator-level-maintenance">SIGMA Operator Level Maintenance</a>
+                    </li>
+                    <li><a href="#" data-content="sigma-technician-level-maintenance">SIGMA Technician Level
+                            Maintenance</a></li>
+                    <li><a href="#" data-content="manual-backups-troubleshooting">Manual Backups & Troubleshooting</a>
+                    </li>
+                    <li><a href="#" data-content="sigma-fcs-operation">SIGMA FCS Operation</a></li>
+                    <li><a href="#" data-content="catalog">Catalog</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="main-content--wrapper">
+                <div class="actionbar">
+                    <div class="actionbar--wrapper">
+                        <div class="breadcrumbs">
+                            <div class="breadcrumbs--wrapper">
+
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div class="actions--wrapper">
+                                <div class="buttons-wrapper">
+                                    <button class="hide-text">hidetext</button>
+                                    <button class="hide-image">hideimage</button>
+                                    <button class="show-both">showboth</button>
+                                </div>
+                                <div class="buttons-wrapper">
+                                    <button class="print">Print</button>
+                                    <button class="download">Download</button>
+                                    <button class="share">Share</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content" data-content="catalog">
+                    <h1>Welcome to our 3D Model</h1>
+                    <iframe src="/assets/Untitled.htm" data-src="/assets/Untitled.htm" width="100%"
+                        height="600"></iframe>
+                </div>
+                <div class="content" data-content="safety-instructions">
+                    <div>testestestestestestestes</div>
+                </div>
+                <div class="content" data-content="sigma-system">
+                    <p>testesteoskteostesokteoskteosijteqrwq</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src=" ./js/main.js"></script>
+</body>
+
+</html>

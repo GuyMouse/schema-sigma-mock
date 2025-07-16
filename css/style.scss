@@ -18,7 +18,7 @@ body {
     margin: 0;
     &.main-cover-page {
         overflow: hidden;
-        .glossary-box{
+        .glossary-box {
             margin-top: 10rem;
         }
     }
@@ -230,3 +230,4 @@ main {
         }
     }
 }
+@import "./contentspage";
