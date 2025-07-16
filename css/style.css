@@ -18,6 +18,12 @@ body {
   font-family: "Assistant", sans-serif;
   margin: 0;
 }
+body.main-cover-page {
+  overflow: hidden;
+}
+body.main-cover-page .glossary-box {
+  margin-top: 10rem;
+}
 
 h2.title {
   color: #fff;
@@ -27,6 +33,27 @@ h2.title {
   border-bottom: 1px solid #fff;
 }
 
+.button {
+  display: inline-block;
+  background: linear-gradient(180deg, #355276 33.02%, #3a679f 100%);
+  border: 5px solid #ffffff;
+  border-radius: 59px;
+  text-decoration: none;
+  color: #fff;
+  padding: 1rem 4rem;
+  transform: translate(0, 50%);
+  transition: background-position 0.2s linear;
+}
+.button:hover, .button:focus {
+  background-position: 0 53px;
+}
+
+.glossary-box {
+  height: 100%;
+}
+.glossary-box:has(.tree) {
+  margin-top: 30rem;
+}
 .glossary-box--wrapper {
   background: rgba(24, 51, 119, 0.03);
   -webkit-backdrop-filter: blur(20.4px);
@@ -37,16 +64,57 @@ h2.title {
 .glossary-box--wrapper .title {
   text-align: center;
 }
-.glossary-box--wrapper ul {
+.glossary-box--wrapper ul.selections {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 10rem;
   list-style: none;
   padding: 0;
-  margin: 15rem 0 0 0;
+  padding: 6rem 0 0;
+  margin: 5rem 0 0 0;
 }
-.glossary-box--wrapper ul li {
+.glossary-box--wrapper ul.selections.tree {
+  padding: 0;
+}
+.glossary-box--wrapper ul.selections.tree li div.sub-tree-item {
+  padding: 5rem 2rem;
+}
+.glossary-box--wrapper ul.selections.tree li div.sub-tree-item--wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+.glossary-box--wrapper ul.selections.tree li div.sub-tree-item--wrapper strong {
+  font-size: 2rem;
+}
+.glossary-box--wrapper ul.selections.tree li div.sub-tree-item--wrapper p {
+  margin: 0;
+  font-size: 1.6rem;
+}
+.glossary-box--wrapper ul.selections.tree li div.sub-tree-item--wrapper .image-wrapper {
+  position: unset;
+  transform: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 7rem;
+  height: 7rem;
+  transform: translate(0, -50%);
+}
+.glossary-box--wrapper ul.selections.tree li div.sub-tree-item--wrapper .image-wrapper img {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+.glossary-box--wrapper ul.selections.tree li div.sub-tree-item--wrapper .button {
+  margin-top: auto;
+}
+.glossary-box--wrapper ul.selections li {
   position: relative;
   border-radius: 15px;
   width: 30rem;
@@ -54,13 +122,14 @@ h2.title {
   box-shadow: inset 0px -2px 1.3px #3a679f;
   transition: box-shadow 0.2s linear;
 }
-.glossary-box--wrapper ul li:hover, .glossary-box--wrapper ul li:focus-within {
+.glossary-box--wrapper ul.selections li:hover, .glossary-box--wrapper ul.selections li:focus-within {
   box-shadow: inset 0px -5px 1.3px #3a679f;
 }
-.glossary-box--wrapper ul li:hover .image-wrapper, .glossary-box--wrapper ul li:focus-within .image-wrapper {
+.glossary-box--wrapper ul.selections li:hover .image-wrapper, .glossary-box--wrapper ul.selections li:focus-within .image-wrapper {
   transform: translate(-50%, -60%);
 }
-.glossary-box--wrapper ul li a {
+.glossary-box--wrapper ul.selections li > a,
+.glossary-box--wrapper ul.selections li .sub-tree-item {
   display: inline-block;
   width: 100%;
   height: 100%;
@@ -71,7 +140,8 @@ h2.title {
   color: #1d334f;
   padding: 7rem 2rem 3rem;
 }
-.glossary-box--wrapper ul li a .image-wrapper {
+.glossary-box--wrapper ul.selections li > a .image-wrapper,
+.glossary-box--wrapper ul.selections li .sub-tree-item .image-wrapper {
   position: absolute;
   top: 0;
   left: 50%;
@@ -85,7 +155,8 @@ h2.title {
   overflow: hidden;
   transition: transform 0.2s linear;
 }
-.glossary-box--wrapper ul li a .image-wrapper img {
+.glossary-box--wrapper ul.selections li > a .image-wrapper img,
+.glossary-box--wrapper ul.selections li .sub-tree-item .image-wrapper img {
   width: 5rem;
   height: 5rem;
   -o-object-fit: contain;
@@ -107,14 +178,16 @@ h1 {
   font-size: 4.8rem;
 }
 
+body {
+  overflow: auto;
+}
+
 main .cover-page {
   position: relative;
   background-image: url(../assets/background-image-cover-page.png);
   background-repeat: no-repeat;
-  background-position: 0 -20rem;
-  background-size: cover;
-  height: 100%;
-  overflow: hidden;
+  background-size: 100vw 90vh;
+  background-position: top center;
 }
 main .cover-page > img {
   position: absolute;
@@ -132,14 +205,27 @@ main .cover-page > svg:first-of-type {
 main .cover-page > svg:last-of-type {
   left: 0;
 }
+main .cover-page > svg path {
+  transition: filter 0.2s linear;
+}
+main .cover-page > svg path.glow {
+  filter: drop-shadow(0 0 10px #fff);
+}
 main .cover-page--wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 20rem;
+  gap: 12rem;
   padding: 0 2rem;
   height: 100%;
 }
-main .cover-page--wrapper h1 {
+main .cover-page--wrapper:has(.tree) {
+  display: block;
+  text-align: start;
+}
+main .cover-page--wrapper:has(.tree) h1 {
+  padding-top: 10rem;
+}
+main .cover-page--wrapper:not(:has(.tree)) h1 {
   margin-top: 10rem;
 }/*# sourceMappingURL=style.css.map */
