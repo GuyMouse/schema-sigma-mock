@@ -258,22 +258,75 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
   text-decoration: none;
   color: #fff;
 }
+.contents-page navbar .search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contents-page navbar .search--wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  background-color: #f0f1f2;
+  border-radius: 9999px;
+  padding: 0.8rem 2rem 0.8rem 0;
+  box-shadow: 0 0 0 2px #2f3b48;
+}
+.contents-page navbar .search--wrapper input[type=text] {
+  border: none;
+  background: transparent;
+  font-size: 1.6rem;
+  color: #3a679f;
+  padding: 0.5rem 1rem;
+  outline: none;
+  width: 100%;
+  min-width: 200px;
+}
+.contents-page navbar .search--wrapper input[type=text]::-moz-placeholder {
+  color: #3a679f;
+  opacity: 0.8;
+}
+.contents-page navbar .search--wrapper input[type=text]::placeholder {
+  color: #3a679f;
+  opacity: 0.8;
+}
+.contents-page navbar .search--wrapper .search-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-left: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.contents-page navbar .search--wrapper .search-button svg {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+.contents-page navbar .search--wrapper .search-button svg path {
+  fill: #3a679f;
+}
 .contents-page .sidebar,
 .contents-page .main-content {
   display: inline-block;
 }
+.contents-page .container {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  height: 100%;
+}
 .contents-page .sidebar {
-  width: 29%;
   max-width: 30rem;
   height: 100%;
   background-color: #f2f2f2;
 }
+.contents-page .sidebar--wrapper {
+  padding: 0 2rem;
+}
 .contents-page .sidebar--wrapper ul {
   padding: 0;
   margin: 0;
-}
-.contents-page .sidebar--wrapper > ul {
-  padding: 0 0 0 1rem;
 }
 .contents-page .sidebar ul li.has-submenu > ul {
   display: none;
@@ -330,14 +383,91 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
   transition: color 0.2s linear, background-color 0.2s linear;
 }
 .contents-page .main-content {
-  width: 70%;
+  width: 100%;
   height: 100%;
   vertical-align: top;
   background-color: #fff;
 }
+.contents-page .main-content .actionbar {
+  background-color: #355276;
+}
+.contents-page .main-content .actionbar--wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+.contents-page .main-content .actionbar--wrapper .breadcrumbs--wrapper span {
+  font-size: 1.6rem;
+  color: #fff;
+}
+.contents-page .main-content .actionbar--wrapper .breadcrumbs--wrapper span:last-child {
+  font-weight: 600;
+}
+.contents-page .main-content .actionbar--wrapper .actions--wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+.contents-page .main-content .actionbar--wrapper .actions--wrapper .buttons-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.contents-page .main-content .actionbar--wrapper .actions--wrapper .buttons-wrapper:first-child:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  right: -2rem;
+  background-color: #fff;
+  width: 1px;
+}
+.contents-page .main-content .actionbar--wrapper .actions--wrapper .buttons-wrapper button {
+  border: unset;
+  background-color: unset;
+  padding: 0;
+}
+.contents-page .main-content .actionbar--wrapper .actions--wrapper .buttons-wrapper button:not(.video, .share) {
+  cursor: pointer;
+}
+.contents-page .main-content .actionbar--wrapper .actions--wrapper .buttons-wrapper button.active:not(.video, .share) svg path, .contents-page .main-content .actionbar--wrapper .actions--wrapper .buttons-wrapper button:hover:not(.video, .share) svg path {
+  fill: #000;
+}
+.contents-page .main-content .actionbar--wrapper .actions--wrapper .buttons-wrapper button svg {
+  display: block;
+  width: 2rem;
+}
+.contents-page .main-content .actionbar--wrapper .actions--wrapper .buttons-wrapper button svg path {
+  transition: fill 0.2s linear;
+}
 .contents-page .main-content .content {
   display: none;
+  padding: 2.5rem 4rem;
+  font-size: 1.4rem;
+}
+.contents-page .main-content .content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+}
+.contents-page .main-content .content-wrapper p {
+  width: 50%;
+  line-height: 2.4rem;
+  font-size: 1.5rem;
+  text-align: justify;
+  white-space: pre-line;
+}
+.contents-page .main-content .content-wrapper img {
+  width: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 1px solid #000;
 }
 .contents-page .main-content .content.active {
   display: block;
+}
+
+.hide {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

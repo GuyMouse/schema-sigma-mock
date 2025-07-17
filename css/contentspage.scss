@@ -26,23 +26,70 @@
                 }
             }
         }
+        .search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &--wrapper {
+                display: flex;
+                align-items: center;
+                flex-direction: row-reverse;
+                background-color: #f0f1f2;
+                border-radius: 9999px;
+                padding: 0.8rem 2rem 0.8rem 0;
+                box-shadow: 0 0 0 2px #2f3b48;
+                input[type="text"] {
+                    border: none;
+                    background: transparent;
+                    font-size: 1.6rem;
+                    color: #3a679f;
+                    padding: 0.5rem 1rem;
+                    outline: none;
+                    width: 100%;
+                    min-width: 200px;
+                    &::placeholder {
+                        color: #3a679f;
+                        opacity: 0.8;
+                    }
+                }
+                .search-button {
+                    background: transparent;
+                    border: none;
+                    padding: 0;
+                    margin-left: 1rem;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    svg {
+                        width: 2.4rem;
+                        height: 2.4rem;
+                        path {
+                            fill: #3a679f;
+                        }
+                    }
+                }
+            }
+        }
     }
     .sidebar,
     .main-content {
         display: inline-block;
     }
+    .container {
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-start;
+        height: 100%;
+    }
     .sidebar {
-        width: 29%;
         max-width: 30rem;
         height: 100%;
         background-color: #f2f2f2;
         &--wrapper {
+            padding: 0 2rem;
             ul {
                 padding: 0;
                 margin: 0;
-            }
-            & > ul {
-                padding: 0 0 0 1rem;
             }
         }
         ul li.has-submenu > ul {
@@ -113,15 +160,102 @@
         }
     }
     .main-content {
-        width: 70%;
+        width: 100%;
         height: 100%;
         vertical-align: top;
         background-color: #fff;
+        .actionbar {
+            background-color: #355276;
+            &--wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1rem 2rem;
+                .breadcrumbs {
+                    &--wrapper {
+                        span {
+                            font-size: 1.6rem;
+                            color: #fff;
+                            &:last-child {
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+                .actions {
+                    &--wrapper {
+                        display: flex;
+                        align-items: center;
+                        gap: 4rem;
+                        .buttons-wrapper {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            gap: 1rem;
+                            &:first-child:before {
+                                content: "";
+                                position: absolute;
+                                height: 100%;
+                                right: -2rem;
+                                background-color: #fff;
+                                width: 1px;
+                            }
+                            button {
+                                border: unset;
+                                background-color: unset;
+                                padding: 0;
+                                &:not(.video, .share) {
+                                    cursor: pointer;
+                                }
+                                &.active,
+                                &:hover {
+                                    &:not(.video, .share) {
+                                        svg path {
+                                            fill: #000;
+                                        }
+                                    }
+                                }
+                                svg {
+                                    display: block;
+                                    width: 2rem;
+                                    path {
+                                        transition: fill 0.2s linear;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         .content {
             display: none;
+            padding: 2.5rem 4rem;
+            font-size: 1.4rem;
+            &-wrapper {
+                display: flex;
+                align-items: flex-start;
+                gap: 4rem;
+                p {
+                    width: 50%;
+                    line-height: 2.4rem;
+                    font-size: 1.5rem;
+                    text-align: justify;
+                    white-space: pre-line;
+                }
+                img {
+                    width: 50%;
+                    object-fit: cover;
+                    border: 1px solid #000;
+                }
+            }
             &.active {
                 display: block;
             }
         }
     }
+}
+
+.hide {
+    display: none;
 }

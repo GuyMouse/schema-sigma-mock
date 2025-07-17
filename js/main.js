@@ -41,10 +41,74 @@ jQuery(function ($) {
 
         // Optionally set the active sidebar link
         $('.sidebar ul li').removeClass('active');
-        $(`.sidebar ul li a[data-content="${hash}"]`).parent().addClass('active');
+        $(`.sidebar ul li a[data-content="${hash}"]`).trigger('click');
     }
 
     showContentFromHash();
 
     window.addEventListener("hashchange", showContentFromHash);
+
+    function updateBreadcrumbs(pathArray) {
+        const wrapper = document.querySelector('.breadcrumbs--wrapper');
+        if (!wrapper) return;
+        wrapper.innerHTML = '';
+        pathArray.forEach((item, idx) => {
+            const crumb = document.createElement('span');
+            crumb.className = 'breadcrumb';
+            crumb.textContent = item;
+            wrapper.appendChild(crumb);
+            if (idx < pathArray.length - 1) {
+                const sep = document.createElement('span');
+                sep.className = 'breadcrumb-separator';
+                sep.textContent = ' > ';
+                wrapper.appendChild(sep);
+            }
+        });
+    }
+
+    function getBreadcrumbPath(link) {
+        const path = [];
+        let li = link.parentElement;
+        while (li && li.tagName === 'LI') {
+            const a = li.querySelector('a');
+            if (a) path.unshift(a.textContent.trim());
+            li = li.parentElement.closest('li');
+        }
+        return path;
+    }
+
+    $('.sidebar ul li a').on('click', function () {
+        const path = getBreadcrumbPath(this);
+        updateBreadcrumbs(path);
+    });
+
+    // Initialize breadcrumbs on page load if hash exists
+    if (window.location.hash) {
+        const activeLink = $(`.sidebar ul li a[data-content="${window.location.hash.replace('#', '')}"]`)[0];
+        if (activeLink) {
+            const path = getBreadcrumbPath(activeLink);
+            updateBreadcrumbs(path);
+        }
+    }
+    $('.actions .buttons-wrapper button').on('click', function (e) {
+        e.preventDefault();
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+            return;
+        }
+        $('.actions .buttons-wrapper button').removeClass('active');
+        $(this).toggleClass('active');
+    });
+    $('.actions .buttons-wrapper button.hide-text').on('click', function (e) {
+        $('.content .content-wrapper p').toggleClass('hide');
+        $('.content .content-wrapper img').removeClass('hide');
+    });
+    $('.actions .buttons-wrapper button.hide-image').on('click', function (e) {
+        $('.content .content-wrapper img').toggleClass('hide');
+        $('.content .content-wrapper p').removeClass('hide');
+    });
+    $('.actions .buttons-wrapper button.show-both').on('click', function (e) {
+        $('.content .content-wrapper p').removeClass('hide');
+        $('.content .content-wrapper img').removeClass('hide');
+    });
 });
