@@ -100,15 +100,45 @@ jQuery(function ($) {
         $(this).toggleClass('active');
     });
     $('.actions .buttons-wrapper button.hide-text').on('click', function (e) {
-        $('.content .content-wrapper p').toggleClass('hide');
+        $('.content .content-wrapper p').each(function () {
+            // Hide text nodes, show images
+            $(this).contents().each(function () {
+                if (this.nodeType === Node.TEXT_NODE) {
+                    // Hide text nodes by wrapping in a span.hide
+                    if (this.textContent.trim() !== '') {
+                        const span = document.createElement('span');
+                        span.className = 'hide';
+                        span.textContent = this.textContent;
+                        $(this).replaceWith(span);
+                    }
+                } else if (this.nodeType === Node.ELEMENT_NODE && this.tagName === 'IMG') {
+                    $(this).removeClass('hide');
+                }
+            });
+        });
+        // Hide other paragraphs (if not already handled)
+        $('.content .content-wrapper p:not(:has(img))').addClass('hide');
         $('.content .content-wrapper img').removeClass('hide');
     });
+
     $('.actions .buttons-wrapper button.hide-image').on('click', function (e) {
-        $('.content .content-wrapper img').toggleClass('hide');
+        $('.content .content-wrapper img').addClass('hide');
+        // Restore text in paragraphs
+        $('.content .content-wrapper p').each(function () {
+            $(this).find('span.hide').each(function () {
+                $(this).replaceWith(document.createTextNode($(this).text()));
+            });
+        });
         $('.content .content-wrapper p').removeClass('hide');
     });
+
     $('.actions .buttons-wrapper button.show-both').on('click', function (e) {
-        $('.content .content-wrapper p').removeClass('hide');
         $('.content .content-wrapper img').removeClass('hide');
+        $('.content .content-wrapper p').each(function () {
+            $(this).find('span.hide').each(function () {
+                $(this).replaceWith(document.createTextNode($(this).text()));
+            });
+        });
+        $('.content .content-wrapper p').removeClass('hide');
     });
 });
