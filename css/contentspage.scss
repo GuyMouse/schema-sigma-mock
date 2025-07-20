@@ -140,38 +140,69 @@
                     color: #fff;
                 }
                 &.has-submenu {
-                    &::before,
-                    &::after {
-                        content: url("/assets/chevron.svg");
-                        position: absolute;
-                        top: 0;
-                        left: 2rem;
-                        color: #fff;
-                        transform: translate(0, 50%);
-                        display: inline-block;
-                        opacity: 1;
-                        transition:
-                            opacity 0.2s linear,
-                            transform 0.2s linear;
+                    & > a {
+                        position: relative;
+                        & > svg {
+                            display: block;
+                            position: absolute;
+                            top: 50%;
+                            left: 1rem;
+                            transform: translate(0, -50%);
+                            transition: transform 0.2s linear;
+                            cursor: pointer;
+                            path {
+                                transition:
+                                    stroke 0.2s linear,
+                                    fill 0.2s linear;
+                            }
+                            &:hover,
+                            &:focus {
+                                path {
+                                    fill: #fff;
+                                    stroke: #000;
+                                }
+                            }
+                        }
                     }
-                    &::after {
-                        opacity: 0;
-                        content: url("/assets/white-chevron.svg");
+                    &.open {
+                        & > a {
+                            svg {
+                                transform: translate(0, -50%) rotate(90deg);
+                            }
+                        }
                     }
-                    &.open::before,
-                    &.open::after,
-                    &.active::before,
-                    &.active::after {
-                        transform: translate(0, 50%) rotate(90deg);
-                        opacity: 0;
-                    }
-                    &.active::after {
-                        opacity: 1;
-                    }
-                    &.open::before {
-                        transform: translate(0, 50%) rotate(90deg);
-                        opacity: 1;
-                    }
+                    // &::before,
+                    // &::after {
+                    //     content: url("/assets/chevron.svg");
+                    //     position: absolute;
+                    //     top: 0;
+                    //     left: 2rem;
+                    //     color: #fff;
+                    //     transform: translate(0, 50%);
+                    //     display: inline-block;
+                    //     opacity: 1;
+                    //     transition:
+                    //         opacity 0.2s linear,
+                    //         transform 0.2s linear;
+                    // }
+                    // &::after {
+                    //     opacity: 0;
+                    //     content: url("/assets/white-chevron.svg");
+                    // }
+                    // &.open::before,
+                    // &.open::after,
+                    // &.active::before,
+                    // &.active::after {
+                    //     transform: translate(0, 50%) rotate(90deg);
+                    //     opacity: 0;
+                    // }
+                    // &.active::after {
+                    //     opacity: 1;
+                    // }
+                    // &.open::before {
+                    //     transform: translate(0, 50%) rotate(90deg);
+                    //     opacity: 1;
+                    // }
                 }
                 a {
                     display: block;
@@ -202,6 +233,7 @@
             top: 6rem;
             width: calc(100% - 30rem);
             background-color: #355276;
+            border-top: 2px solid #577599;
             &--wrapper {
                 display: flex;
                 align-items: center;
@@ -219,6 +251,24 @@
                     }
                 }
                 .actions {
+                    position: relative;
+                    &::before,
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: -1.2rem;
+                        right: -2rem;
+                        width: 110%;
+                        height: 2px;
+                        background-color: #ffe650;
+                        z-index: 1;
+                    }
+                    &:after {
+                        right: 2rem;
+                        background-color: #6aa0e2;
+                        width: 200%;
+                        z-index: 0;
+                    }
                     &--wrapper {
                         display: flex;
                         align-items: center;
@@ -329,12 +379,18 @@
                     p {
                         line-height: 1.5em;
                         font-size: 1.6rem;
+                        margin: 3rem 0;
                     }
                     ul {
                         display: flex;
                         flex-direction: column;
                         gap: 1rem;
                         margin: 3rem 0 5rem;
+                        &.no-bold {
+                            li {
+                                font-weight: 300;
+                            }
+                        }
                         li {
                             font-size: 1.6rem;
                             font-weight: 600;
@@ -371,5 +427,5 @@
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }

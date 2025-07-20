@@ -7,9 +7,11 @@ jQuery(function ($) {
             cover.style.backgroundPositionY = `${scrollY * 0.55}px`;
         }
     });
-    $('.sidebar ul li a').on('click', function (e) {
+    // Handle submenu open/close only when SVG inside .sidebar ul li a is clicked
+    $('.sidebar ul li a svg').on('click', function (e) {
         e.preventDefault();
-        var li = this.parentNode;
+        e.stopPropagation(); // Prevent parent link click
+        var li = $(this).closest('li')[0];
         var submenu = li.querySelector('ul');
         $('.sidebar ul li').removeClass('active');
         if (submenu) {
@@ -17,16 +19,19 @@ jQuery(function ($) {
                 $(submenu).slideUp();
                 li.classList.remove('open');
                 li.classList.remove('active');
+                $('.close').removeClass('active');
             } else {
                 $(submenu).slideDown();
                 li.classList.add('open');
                 li.classList.add('active');
+                $('.close').addClass('active');
             }
         } else {
             li.classList.add('active');
         }
     });
-    $('.sidebar ul li:not(.has-submenu) a').on('click', function (e) {
+    $('.sidebar ul li a').on('click', function (e) {
+        $('.sidebar ul li').removeClass('active');
         $(this).parent().addClass('active');
         let data = $(this).data('content');
         $('.content').hide();
@@ -93,54 +98,58 @@ jQuery(function ($) {
     $('.actions .buttons-wrapper button').on('click', function (e) {
         e.preventDefault();
         if ($(this).hasClass('active')) {
-            $(this).removeClass('active');
             return;
         }
         $('.actions .buttons-wrapper button').removeClass('active');
         $(this).toggleClass('active');
     });
     $('.actions .buttons-wrapper button.hide-text').on('click', function (e) {
-        $('.content .content-wrapper p').each(function () {
-            // Hide text nodes, show images
-            $(this).contents().each(function () {
-                if (this.nodeType === Node.TEXT_NODE) {
-                    // Hide text nodes by wrapping in a span.hide
-                    if (this.textContent.trim() !== '') {
-                        const span = document.createElement('span');
-                        span.className = 'hide';
-                        span.textContent = this.textContent;
-                        $(this).replaceWith(span);
-                    }
-                } else if (this.nodeType === Node.ELEMENT_NODE && this.tagName === 'IMG') {
-                    $(this).removeClass('hide');
-                }
-            });
-        });
-        // Hide other paragraphs (if not already handled)
-        $('.content .content-wrapper p:not(:has(img))').addClass('hide');
-        $('.content .content-wrapper img').removeClass('hide');
+        $('.content .page-title,.content p,.content ul').addClass('hide');
+        $('.content img').removeClass('hide');
     });
 
     $('.actions .buttons-wrapper button.hide-image').on('click', function (e) {
-        $('.content .content-wrapper img').addClass('hide');
-        // Restore text in paragraphs
-        $('.content .content-wrapper p').each(function () {
-            $(this).find('span.hide').each(function () {
-                $(this).replaceWith(document.createTextNode($(this).text()));
-            });
-        });
-        $('.content .content-wrapper p').removeClass('hide');
+        $('.content img').addClass('hide');
+        $('.content .page-title, .content p, .content ul').removeClass('hide');
+
+        // // Restore text in paragraphs
+        // $('.content .content-wrapper p').each(function () {
+        //     $(this).find('span.hide').each(function () {
+        //         $(this).replaceWith(document.createTextNode($(this).text()));
+        //     });
+        // });
+        // $('.content .content-wrapper p').removeClass('hide');
+
+        // // Restore text in list items
+        // $('.content .content-wrapper ul').removeClass('hide');
+        // $('.content .content-wrapper ul li').each(function () {
+        //     $(this).find('span.hide').each(function () {
+        //         $(this).replaceWith(document.createTextNode($(this).text()));
+        //     });
+        // });
     });
 
     $('.actions .buttons-wrapper button.show-both').on('click', function (e) {
-        $('.content .content-wrapper img').removeClass('hide');
-        $('.content .content-wrapper p').each(function () {
-            $(this).find('span.hide').each(function () {
-                $(this).replaceWith(document.createTextNode($(this).text()));
-            });
-        });
-        $('.content .content-wrapper p').removeClass('hide');
+        $('.content img').removeClass('hide');
+        $('.hide').removeClass('hide');
+
+        // Restore text in paragraphs
+        // $('.content .content-wrapper p').each(function () {
+        //     $(this).find('span.hide').each(function () {
+        //         $(this).replaceWith(document.createTextNode($(this).text()));
+        //     });
+        // });
+        // $('.content .content-wrapper p').removeClass('hide');
+
+        // // Restore text in list items
+        // $('.content .content-wrapper ul').removeClass('hide');
+        // $('.content .content-wrapper ul li').each(function () {
+        //     $(this).find('span.hide').each(function () {
+        //         $(this).replaceWith(document.createTextNode($(this).text()));
+        //     });
+        // });
     });
+
     $('.close').on('click', function (e) {
         e.preventDefault();
         $(this).toggleClass('active');

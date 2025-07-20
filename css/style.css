@@ -379,31 +379,27 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
   background-color: #355276;
   color: #fff;
 }
-.contents-page .sidebar ul li.has-submenu::before, .contents-page .sidebar ul li.has-submenu::after {
-  content: url("/assets/chevron.svg");
+.contents-page .sidebar ul li.has-submenu > a {
+  position: relative;
+}
+.contents-page .sidebar ul li.has-submenu > a > svg {
+  display: block;
   position: absolute;
-  top: 0;
-  left: 2rem;
-  color: #fff;
-  transform: translate(0, 50%);
-  display: inline-block;
-  opacity: 1;
-  transition: opacity 0.2s linear, transform 0.2s linear;
+  top: 50%;
+  left: 1rem;
+  transform: translate(0, -50%);
+  transition: transform 0.2s linear;
+  cursor: pointer;
 }
-.contents-page .sidebar ul li.has-submenu::after {
-  opacity: 0;
-  content: url("/assets/white-chevron.svg");
+.contents-page .sidebar ul li.has-submenu > a > svg path {
+  transition: stroke 0.2s linear, fill 0.2s linear;
 }
-.contents-page .sidebar ul li.has-submenu.open::before, .contents-page .sidebar ul li.has-submenu.open::after, .contents-page .sidebar ul li.has-submenu.active::before, .contents-page .sidebar ul li.has-submenu.active::after {
-  transform: translate(0, 50%) rotate(90deg);
-  opacity: 0;
+.contents-page .sidebar ul li.has-submenu > a > svg:hover path, .contents-page .sidebar ul li.has-submenu > a > svg:focus path {
+  fill: #fff;
+  stroke: #000;
 }
-.contents-page .sidebar ul li.has-submenu.active::after {
-  opacity: 1;
-}
-.contents-page .sidebar ul li.has-submenu.open::before {
-  transform: translate(0, 50%) rotate(90deg);
-  opacity: 1;
+.contents-page .sidebar ul li.has-submenu.open > a svg {
+  transform: translate(0, -50%) rotate(90deg);
 }
 .contents-page .sidebar ul li a {
   display: block;
@@ -430,6 +426,7 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
   top: 6rem;
   width: calc(100% - 30rem);
   background-color: #355276;
+  border-top: 2px solid #577599;
 }
 .contents-page .main-content .actionbar--wrapper {
   display: flex;
@@ -443,6 +440,25 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
 }
 .contents-page .main-content .actionbar--wrapper .breadcrumbs--wrapper span:last-child {
   font-weight: 600;
+}
+.contents-page .main-content .actionbar--wrapper .actions {
+  position: relative;
+}
+.contents-page .main-content .actionbar--wrapper .actions::before, .contents-page .main-content .actionbar--wrapper .actions:after {
+  content: "";
+  position: absolute;
+  top: -1.2rem;
+  right: -2rem;
+  width: 110%;
+  height: 2px;
+  background-color: #ffe650;
+  z-index: 1;
+}
+.contents-page .main-content .actionbar--wrapper .actions:after {
+  right: 2rem;
+  background-color: #6aa0e2;
+  width: 200%;
+  z-index: 0;
 }
 .contents-page .main-content .actionbar--wrapper .actions--wrapper {
   display: flex;
@@ -547,12 +563,16 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
 .contents-page .main-content .content-wrapper .content-container p {
   line-height: 1.5em;
   font-size: 1.6rem;
+  margin: 3rem 0;
 }
 .contents-page .main-content .content-wrapper .content-container ul {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin: 3rem 0 5rem;
+}
+.contents-page .main-content .content-wrapper .content-container ul.no-bold li {
+  font-weight: 300;
 }
 .contents-page .main-content .content-wrapper .content-container ul li {
   font-size: 1.6rem;
@@ -583,5 +603,5 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }/*# sourceMappingURL=style.css.map */
