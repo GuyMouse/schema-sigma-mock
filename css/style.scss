@@ -181,6 +181,13 @@ h1 {
 body {
     overflow: auto;
 }
+navbar,
+.actionbar,
+.sidebar {
+    position: fixed;
+    top: 0;
+    z-index: 9;
+}
 main {
     .cover-page {
         position: relative;

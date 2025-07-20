@@ -141,4 +141,10 @@ jQuery(function ($) {
         });
         $('.content .content-wrapper p').removeClass('hide');
     });
+    $('.close').on('click', function (e) {
+        e.preventDefault();
+        $(this).toggleClass('active');
+        $('li.has-submenu').toggleClass('open').find('ul').slideToggle();
+        $('li.has-submenu').removeClass('active');
+    });
 });

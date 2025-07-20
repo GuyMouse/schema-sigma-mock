@@ -15,13 +15,35 @@
                 ul {
                     display: flex;
                     align-items: center;
-                    gap: 1rem;
+                    gap: 2rem;
                     list-style: none;
                     padding: 0;
                     margin: 0;
+                    li {
+                        position: relative;
+                        &:not(:last-child):before {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            right: -1rem;
+                            height: 100%;
+                            background-color: #fff;
+                            width: 1px;
+                        }
+                    }
                     li a {
                         text-decoration: none;
                         color: #fff;
+                        &.close {
+                            svg {
+                                transition: transform 0.2s linear;
+                            }
+                            &.active {
+                                svg {
+                                    transform: rotate(90deg);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -82,9 +104,16 @@
         height: 100%;
     }
     .sidebar {
+        top: 6rem;
+        padding: 1rem 0 0 0;
         max-width: 30rem;
         height: 100%;
         background-color: #f2f2f2;
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 1.5rem 0 3rem;
+        }
         &--wrapper {
             padding: 0 2rem;
             ul {
@@ -116,7 +145,7 @@
                         content: url("/assets/chevron.svg");
                         position: absolute;
                         top: 0;
-                        left: 0.5rem;
+                        left: 2rem;
                         color: #fff;
                         transform: translate(0, 50%);
                         display: inline-block;
@@ -151,7 +180,7 @@
                     color: #000;
                     width: 100%;
                     height: 100%;
-                    padding: 1rem 2rem 1rem 3rem;
+                    padding: 1rem 2rem 1rem 4rem;
                     transition:
                         color 0.2s linear,
                         background-color 0.2s linear;
@@ -160,11 +189,18 @@
         }
     }
     .main-content {
-        width: 100%;
+        padding-top: 9rem;
+        width: calc(100% - 30rem);
         height: 100%;
         vertical-align: top;
         background-color: #fff;
+        margin-inline-start: auto;
+        &--wrapper {
+            overflow-x: hidden;
+        }
         .actionbar {
+            top: 6rem;
+            width: calc(100% - 30rem);
             background-color: #355276;
             &--wrapper {
                 display: flex;
@@ -229,21 +265,92 @@
             }
         }
         .content {
+            position: relative;
             display: none;
-            padding: 2.5rem 4rem;
+            padding: 2.5rem 0 2.5rem 0;
             font-size: 1.4rem;
-            &-wrapper {
-                &:has(.image-wrapper) {
-                    display: flex;
-                    align-items: flex-start;
-                    gap: 4rem;
-                    p {
-                        width: 50%;
+            &:before {
+                content: url(../assets/content-header.svg);
+                position: absolute;
+                top: 0;
+                right: -40%;
+                height: 100%;
+                background-repeat: no-repeat;
+                background-size: cover;
+                opacity: 0.4;
+            }
+            h1 {
+                padding: 5rem;
+                font-size: 4.8rem;
+                font-weight: 600;
+            }
+            .page-title {
+                position: relative;
+                font-size: 2.4rem;
+                font-weight: 600;
+                .line {
+                    position: absolute;
+                    left: 0;
+                    bottom: -1rem;
+                    width: 100%;
+                    height: 5px;
+                    background-color: #ffe650;
+                    &:before,
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        right: 20%;
+                        width: 100%;
+                        height: 100%;
+                        background-color: #4d8edc;
                     }
+                    &:after {
+                        right: 55%;
+                        background-color: #2f3b49;
+                    }
+                }
+            }
+            &-wrapper {
+                padding: 10rem 5rem;
+                .content-container {
+                    &:has(.image-wrapper) {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 4rem;
+                        p {
+                            width: 50%;
+                        }
+                        img {
+                            width: 100%;
+                            object-fit: cover;
+                            border: 1px solid #000;
+                        }
+                    }
+                    p {
+                        line-height: 1.5em;
+                        font-size: 1.6rem;
+                    }
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;
+                        margin: 3rem 0 5rem;
+                        li {
+                            font-size: 1.6rem;
+                            font-weight: 600;
+                            &::marker {
+                                font-size: 2rem;
+                            }
+                        }
+                    }
+                }
+                .icons {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row-reverse;
+                    justify-content: start;
                     img {
-                        width: 50%;
-                        object-fit: cover;
-                        border: 1px solid #000;
+                        width: 13%;
                     }
                 }
                 .images-group {
@@ -255,12 +362,7 @@
                     }
                 }
             }
-            p {
-                line-height: 2.4rem;
-                font-size: 1.5rem;
-                text-align: justify;
-                white-space: pre-line;
-            }
+
             &.active {
                 display: block;
             }

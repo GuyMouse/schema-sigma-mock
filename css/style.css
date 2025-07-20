@@ -182,6 +182,14 @@ body {
   overflow: auto;
 }
 
+navbar,
+.actionbar,
+.sidebar {
+  position: fixed;
+  top: 0;
+  z-index: 9;
+}
+
 main .cover-page {
   position: relative;
   background-image: url(../assets/background-image-cover-page.png);
@@ -249,14 +257,32 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
 .contents-page navbar .navbar--wrapper .navbar-links ul {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   list-style: none;
   padding: 0;
   margin: 0;
 }
+.contents-page navbar .navbar--wrapper .navbar-links ul li {
+  position: relative;
+}
+.contents-page navbar .navbar--wrapper .navbar-links ul li:not(:last-child):before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -1rem;
+  height: 100%;
+  background-color: #fff;
+  width: 1px;
+}
 .contents-page navbar .navbar--wrapper .navbar-links ul li a {
   text-decoration: none;
   color: #fff;
+}
+.contents-page navbar .navbar--wrapper .navbar-links ul li a.close svg {
+  transition: transform 0.2s linear;
+}
+.contents-page navbar .navbar--wrapper .navbar-links ul li a.close.active svg {
+  transform: rotate(90deg);
 }
 .contents-page navbar .search {
   display: flex;
@@ -317,9 +343,16 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
   height: 100%;
 }
 .contents-page .sidebar {
+  top: 6rem;
+  padding: 1rem 0 0 0;
   max-width: 30rem;
   height: 100%;
   background-color: #f2f2f2;
+}
+.contents-page .sidebar h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 1.5rem 0 3rem;
 }
 .contents-page .sidebar--wrapper {
   padding: 0 2rem;
@@ -350,7 +383,7 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
   content: url("/assets/chevron.svg");
   position: absolute;
   top: 0;
-  left: 0.5rem;
+  left: 2rem;
   color: #fff;
   transform: translate(0, 50%);
   display: inline-block;
@@ -379,16 +412,23 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
   color: #000;
   width: 100%;
   height: 100%;
-  padding: 1rem 2rem 1rem 3rem;
+  padding: 1rem 2rem 1rem 4rem;
   transition: color 0.2s linear, background-color 0.2s linear;
 }
 .contents-page .main-content {
-  width: 100%;
+  padding-top: 9rem;
+  width: calc(100% - 30rem);
   height: 100%;
   vertical-align: top;
   background-color: #fff;
+  margin-inline-start: auto;
+}
+.contents-page .main-content--wrapper {
+  overflow-x: hidden;
 }
 .contents-page .main-content .actionbar {
+  top: 6rem;
+  width: calc(100% - 30rem);
   background-color: #355276;
 }
 .contents-page .main-content .actionbar--wrapper {
@@ -442,23 +482,93 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
   transition: fill 0.2s linear;
 }
 .contents-page .main-content .content {
+  position: relative;
   display: none;
-  padding: 2.5rem 4rem;
+  padding: 2.5rem 0 2.5rem 0;
   font-size: 1.4rem;
 }
-.contents-page .main-content .content-wrapper:has(.image-wrapper) {
+.contents-page .main-content .content:before {
+  content: url(../assets/content-header.svg);
+  position: absolute;
+  top: 0;
+  right: -40%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.4;
+}
+.contents-page .main-content .content h1 {
+  padding: 5rem;
+  font-size: 4.8rem;
+  font-weight: 600;
+}
+.contents-page .main-content .content .page-title {
+  position: relative;
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+.contents-page .main-content .content .page-title .line {
+  position: absolute;
+  left: 0;
+  bottom: -1rem;
+  width: 100%;
+  height: 5px;
+  background-color: #ffe650;
+}
+.contents-page .main-content .content .page-title .line:before, .contents-page .main-content .content .page-title .line:after {
+  content: "";
+  position: absolute;
+  right: 20%;
+  width: 100%;
+  height: 100%;
+  background-color: #4d8edc;
+}
+.contents-page .main-content .content .page-title .line:after {
+  right: 55%;
+  background-color: #2f3b49;
+}
+.contents-page .main-content .content-wrapper {
+  padding: 10rem 5rem;
+}
+.contents-page .main-content .content-wrapper .content-container:has(.image-wrapper) {
   display: flex;
   align-items: flex-start;
   gap: 4rem;
 }
-.contents-page .main-content .content-wrapper:has(.image-wrapper) p {
+.contents-page .main-content .content-wrapper .content-container:has(.image-wrapper) p {
   width: 50%;
 }
-.contents-page .main-content .content-wrapper:has(.image-wrapper) img {
-  width: 50%;
+.contents-page .main-content .content-wrapper .content-container:has(.image-wrapper) img {
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   border: 1px solid #000;
+}
+.contents-page .main-content .content-wrapper .content-container p {
+  line-height: 1.5em;
+  font-size: 1.6rem;
+}
+.contents-page .main-content .content-wrapper .content-container ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 3rem 0 5rem;
+}
+.contents-page .main-content .content-wrapper .content-container ul li {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.contents-page .main-content .content-wrapper .content-container ul li::marker {
+  font-size: 2rem;
+}
+.contents-page .main-content .content-wrapper .icons {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: start;
+}
+.contents-page .main-content .content-wrapper .icons img {
+  width: 13%;
 }
 .contents-page .main-content .content-wrapper .images-group {
   display: grid;
@@ -467,12 +577,6 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
 .contents-page .main-content .content-wrapper .images-group img {
   width: 100%;
   height: 100%;
-}
-.contents-page .main-content .content p {
-  line-height: 2.4rem;
-  font-size: 1.5rem;
-  text-align: justify;
-  white-space: pre-line;
 }
 .contents-page .main-content .content.active {
   display: block;
