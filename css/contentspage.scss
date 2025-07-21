@@ -367,19 +367,19 @@
             &-wrapper {
                 padding: 10rem 5rem;
                 .content-container {
-                    &:has(.image-wrapper) {
-                        display: flex;
-                        align-items: flex-start;
-                        gap: 4rem;
-                        p {
-                            width: 50%;
-                        }
-                        img {
-                            width: 100%;
-                            object-fit: cover;
-                            border: 1px solid #000;
-                        }
-                    }
+                    // &:has(.image-wrapper) {
+                    //     display: flex;
+                    //     align-items: flex-start;
+                    //     gap: 4rem;
+                    //     p {
+                    //         width: 50%;
+                    //     }
+                    //     img {
+                    //         width: 100%;
+                    //         object-fit: cover;
+                    //         border: 1px solid #000;
+                    //     }
+                    // }
                     p {
                         line-height: 1.5em;
                         font-size: 1.6rem;
@@ -411,6 +411,9 @@
                         width: 100%;
                         height: 100%;
                     }
+                    figcaption {
+                        text-align: center;
+                    }
                 }
                 .icons {
                     display: flex;
@@ -425,6 +428,7 @@
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
                     max-width: 40%;
+                    justify-content: flex-end;
                     img {
                         width: 100%;
                         height: 100%;
@@ -509,6 +513,7 @@
 .group {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     p {
         width: 50%;
     }

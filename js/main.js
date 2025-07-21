@@ -104,7 +104,7 @@ jQuery(function ($) {
         $(this).toggleClass('active');
     });
     $('.actions .buttons-wrapper button.hide-text').on('click', function (e) {
-        $('.content .page-title,.content p,.content ul').addClass('hide');
+        $('.content .page-title,.content p,.content ul, .content figcaption').addClass('hide');
         $('.content img').removeClass('hide');
     });
 
