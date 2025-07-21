@@ -156,4 +156,49 @@ jQuery(function ($) {
         $('li.has-submenu').toggleClass('open').find('ul').slideToggle();
         $('li.has-submenu').removeClass('active');
     });
+    const $dots = $('.dot[data-part]');
+    const $rows = $('.table-row[data-part]');
+    const $images = $('.image-wrapper img');
+    const $defaultImage = $('.image-wrapper img[data-part=""]');
+
+    function activatePart(part) {
+        $images.removeClass('active');
+        $rows.removeClass('highlight');
+
+        $images.each(function () {
+            if ($(this).data('part') === part) {
+                $(this).addClass('active');
+            }
+        });
+
+        $(`.table-row[data-part="${part}"]`).addClass('highlight');
+    }
+
+    function resetHighlight() {
+        $images.removeClass('active');
+        $rows.removeClass('highlight');
+        $defaultImage.addClass('active');
+    }
+
+    // Hover on dots
+    $dots.on('mouseenter', function () {
+        const part = $(this).data('part');
+        activatePart(part);
+    });
+
+    $dots.on('mouseleave', function () {
+        resetHighlight();
+    });
+
+    // Hover on table rows
+    $rows.on('mouseenter', function () {
+        const part = $(this).data('part');
+        activatePart(part);
+    });
+
+    $rows.on('mouseleave', function () {
+        resetHighlight();
+    });
+
+
 });

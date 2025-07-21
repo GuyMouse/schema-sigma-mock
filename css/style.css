@@ -615,15 +615,69 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
 
 .content[data-content=general-description] .content-wrapper {
   display: flex;
-  align-items: cente;
-  padding-top: 30rem;
+  align-items: center;
+  gap: 3rem;
 }
 .content[data-content=general-description] .content-wrapper .image-wrapper {
+  position: relative;
   width: 50%;
+  padding-top: 19%;
 }
 .content[data-content=general-description] .content-wrapper .image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: none;
+}
+.content[data-content=general-description] .content-wrapper .image-wrapper img.active {
+  display: block;
+}
+.content[data-content=general-description] .content-wrapper .image-wrapper .dot {
+  position: absolute;
+  z-index: 999;
+}
+.content[data-content=general-description] .content-wrapper .image-wrapper .dot[data-part=gun] {
+  top: 11%;
+  left: 0;
+  width: 29rem;
+  height: 2.5rem;
+  rotate: 14deg;
+}
+.content[data-content=general-description] .content-wrapper .image-wrapper .dot[data-part=turret] {
+  top: 17%;
+  right: 13%;
+  width: 16rem;
+  height: 11rem;
+}
+.content[data-content=general-description] .content-wrapper .image-wrapper .dot[data-part=cab] {
+  top: 20%;
+  left: 3%;
+  width: 20rem;
+  height: 14rem;
+}
+.content[data-content=general-description] .content-wrapper .image-wrapper .dot[data-part=barrel] {
+  top: 10%;
+  left: 42%;
+  height: 10rem;
+  width: 11rem;
+}
+.content[data-content=general-description] .content-wrapper .image-wrapper .dot[data-part=stablelizer] {
+  bottom: 0;
+  right: 0;
+  width: 12rem;
+  height: 10rem;
+}
+.content[data-content=general-description] .content-wrapper .image-wrapper .dot[data-part=stablelizer]:last-of-type {
+  bottom: 0;
+  right: 30%;
+  width: 9rem;
+  height: 10rem;
 }
 
 .group {
@@ -634,7 +688,7 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
   width: 50%;
 }
 .group figure {
-  width: 50%;
+  width: 25% !important;
 }
 .group figure img {
   display: block;
@@ -644,7 +698,33 @@ main .cover-page--wrapper:not(:has(.tree)) h1 {
 
 .table {
   width: 50%;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
 }
+.table-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+.table .table-row {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+.table .table-row.highlight {
+  background-color: red;
+}
+.table .table-row--title {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  font-weight: bold;
+  border: 1px solid #ccc;
+}
+.table .table-row--data {
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
 .hide {
   display: none !important;
 }/*# sourceMappingURL=style.css.map */
