@@ -158,8 +158,7 @@
                             &:hover,
                             &:focus {
                                 path {
-                                    fill: #fff;
-                                    stroke: #000;
+                                    fill: #4d8edc !important;
                                 }
                             }
                         }
@@ -168,6 +167,11 @@
                         & > a {
                             svg {
                                 transform: translate(0, -50%) rotate(90deg);
+                            }
+                        }
+                        &.active {
+                            svg path {
+                                fill: #fff;
                             }
                         }
                     }
@@ -400,18 +404,27 @@
                         }
                     }
                 }
+                figure {
+                    width: 50%;
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
                 .icons {
                     display: flex;
                     align-items: center;
                     flex-direction: row-reverse;
                     justify-content: start;
                     img {
-                        width: 13%;
+                        width: 13rem;
                     }
                 }
                 .images-group {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
+                    max-width: 40%;
                     img {
                         width: 100%;
                         height: 100%;
@@ -426,6 +439,46 @@
     }
 }
 
+.content[data-content="general-description"] {
+    .content-wrapper {
+        display: flex;
+        align-items: cente;
+        padding-top: 30rem;
+        .image-wrapper {
+            width: 50%;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+.group {
+    display: flex;
+    align-items: center;
+    p {
+        width: 50%;
+    }
+    figure {
+        width: 50%;
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+.table {
+    width: 50%;
+    &-wrapper {
+    }
+    &-content {
+    }
+    &-head {
+        ul {
+        }
+    }
+}
 .hide {
     display: none !important;
 }
