@@ -440,6 +440,47 @@
                 display: block;
             }
         }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: calc(100% - 30rem);
+            background-color: #f4f6f7;
+            border-top: 1px;
+            border-top-color: lightgrey;
+            border-top-style: solid;
+            padding: 2rem 0;
+            &--wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                button {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    border: 0;
+                    background-color: unset;
+                    cursor: pointer;
+                    transition: color 0.2s linear;
+                    &:hover,
+                    &:focus {
+                        color: #6aa0e2;
+                        svg path {
+                            fill: #6aa0e2;
+                        }
+                    }
+                    svg path {
+                        transition: fill 0.2s linear;
+                    }
+                    span {
+                        font-size: 1.6rem;
+                    }
+                }
+                .pages {
+                    color: #57b7e0;
+                    font-size: 2rem;
+                }
+            }
+        }
     }
 }
 
